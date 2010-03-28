@@ -17,7 +17,9 @@ case `uname` in
 		rm -rf chrome-mac
 		;;
 	'Linux' )
-		echo 'Linux code will go here'
+		wget `./latestChromiumURL.py`
+		unzip -q chrome-linux.zip
+		rm -rf chrome-linux.zip
 		;;
 esac
 
