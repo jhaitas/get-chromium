@@ -9,6 +9,7 @@ elif which curl &> /dev/null; then
 	DLOAD_CMD="curl -O"
 else
 	echo "don't know how to download"
+	exit
 fi
 
 case `uname` in
