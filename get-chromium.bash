@@ -2,9 +2,18 @@
 
 set -e
 
+# Identify which command we need to download
+if which wget &> /dev/null; then
+	DLOAD_CMD="wget"
+elif which curl &> /dev/null; then
+	DLOAD_CMD="curl -O"
+else
+	echo "don't know how to download"
+fi
+
 case `uname` in
 	'Darwin' )
-		curl -O `./latestChromiumURL.py`
+		${DLOAD_CMD} `./latestChromiumURL.py`
 	
 
 		unzip -q chrome-mac.zip 
@@ -17,7 +26,7 @@ case `uname` in
 		rm -rf chrome-mac
 		;;
 	'Linux' )
-		wget `./latestChromiumURL.py`
+		${DLOAD_CMD} `./latestChromiumURL.py`
 		unzip -q chrome-linux.zip
 		rm -rf chrome-linux.zip
 		;;
